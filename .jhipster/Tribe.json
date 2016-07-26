@@ -1,0 +1,64 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "many-to-one",
+      "relationshipName": "icon",
+      "otherEntityName": "picture",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipType": "many-to-one",
+      "relationshipName": "picture",
+      "otherEntityName": "picture",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 3,
+      "relationshipType": "many-to-many",
+      "relationshipName": "posts",
+      "otherEntityName": "post",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipId": 4,
+      "relationshipType": "many-to-many",
+      "relationshipName": "events",
+      "otherEntityName": "event",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipId": 5,
+      "relationshipType": "many-to-many",
+      "relationshipName": "peoples",
+      "otherEntityName": "people",
+      "ownerSide": false,
+      "otherEntityRelationshipName": "tribes"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "tribeId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "tribeName",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "tags",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160726043346",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "tribe"
+}

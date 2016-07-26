@@ -1,0 +1,157 @@
+
+entity Tribe {
+	tribeId Long,
+	tribeName String,
+    tags String,
+}
+
+entity Post {
+	postId Long,
+	postTitle String,
+    excerpt String,
+    content String,
+    status String,
+    createdAt LocalDate,
+    updatedAt LocalDate,
+    tags String,
+    showComments Boolean,
+    permalink String
+}
+
+entity Picture {
+    pictureId Long,
+    pictureTitle String,
+    description String,
+    file String,
+    type PictureType,
+    createdAt LocalDate,
+    updatedAt LocalDate,
+}
+
+enum PictureType {
+	ICON, 
+    POST,
+    EVENT
+}
+
+entity Event {
+	eventId Long,
+    eventName String,
+    description String,
+    period String,
+    createdAt LocalDate,
+    tags String,
+    link String,
+    latitude BigDecimal,
+    longitude BigDecimal,
+    picture String
+}
+
+entity SocialNetwork {
+    socialNetworkId Long,
+    socialNetworkName String,
+    description String,
+    icon String,
+}
+
+entity People {
+	peopleId Long,
+	birthDate LocalDate,
+    gender Gender,
+    prefferedTribes String,
+    createdAt LocalDate,
+    updatedAt LocalDate,
+}
+
+entity User {
+	userId Long
+}
+
+entity Comment {
+	commentId Long,
+    commentTitle String,
+    content String,
+    status CommentStatus,
+}
+
+
+enum CommentStatus {
+	PENDING,
+    APPROVED,
+    DISAPPROVED
+}
+
+enum Gender {
+	MALE,
+    FEMALE
+}
+
+entity Setting {
+	settingId Long,
+    settingKey String,
+    settingValue String
+}
+
+relationship ManyToMany {
+    People{socialNetwork} to SocialNetwork{people}
+}
+
+relationship OneToOne {
+	People{user} to User{people}
+}
+
+relationship ManyToMany {
+	People{event} to Event{people}
+}
+
+relationship ManyToMany {
+	Event{posts} to Post{events}
+}
+
+relationship ManyToMany {
+	People{likedPosts} to Post{peoples}
+}
+
+relationship OneToMany {
+	People{comments} to Comment{people}
+}
+
+relationship OneToMany {
+	Post{comments} to Comment{post}
+}
+
+relationship OneToMany {
+	Post{author} to People{posts}
+}
+
+relationship OneToMany {
+	Picture{author} to People{pictures}
+}
+
+relationship ManyToMany {
+	People{tribes} to Tribe{peoples}
+}
+
+relationship ManyToOne {
+	Tribe{icon} to Picture
+}
+
+relationship ManyToOne {
+	Tribe{picture} to Picture
+}
+
+relationship ManyToMany {
+	Tribe{posts} to Post{tribes}
+}
+
+relationship ManyToMany {
+	Tribe{events} to Event{tribes}
+}
+
+relationship ManyToMany {
+	Event{socialNetworks} to SocialNetwork{events}
+}
+
+relationship OneToMany {
+	People{settings} to Setting{people}
+}

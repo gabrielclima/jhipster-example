@@ -1,0 +1,22 @@
+{
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "relationshipName": "people",
+      "otherEntityName": "people",
+      "ownerSide": false,
+      "otherEntityRelationshipName": "user"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "Long"
+    }
+  ],
+  "changelogDate": "20160726042348",
+  "entityTableName": "user",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}

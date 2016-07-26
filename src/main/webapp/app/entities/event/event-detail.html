@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span>Event</span> {{vm.event.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Event Id</span></dt>
+        <dd>
+            <span>{{vm.event.eventId}}</span>
+        </dd>
+        <dt><span>Event Name</span></dt>
+        <dd>
+            <span>{{vm.event.eventName}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{vm.event.description}}</span>
+        </dd>
+        <dt><span>Period</span></dt>
+        <dd>
+            <span>{{vm.event.period}}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+            <span>{{vm.event.createdAt | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Tags</span></dt>
+        <dd>
+            <span>{{vm.event.tags}}</span>
+        </dd>
+        <dt><span>Link</span></dt>
+        <dd>
+            <span>{{vm.event.link}}</span>
+        </dd>
+        <dt><span>Latitude</span></dt>
+        <dd>
+            <span>{{vm.event.latitude}}</span>
+        </dd>
+        <dt><span>Longitude</span></dt>
+        <dd>
+            <span>{{vm.event.longitude}}</span>
+        </dd>
+        <dt><span>Picture</span></dt>
+        <dd>
+            <span>{{vm.event.picture}}</span>
+        </dd>
+        <dt><span>Posts</span></dt>
+        <dd>
+            <span ng-repeat="posts in vm.event.posts">
+                <a ui-sref="post-detail({id: posts.id})">{{posts.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Social Networks</span></dt>
+        <dd>
+            <span ng-repeat="socialNetworks in vm.event.socialNetworks">
+                <a ui-sref="social-network-detail({id: socialNetworks.id})">{{socialNetworks.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="event-detail.edit({id:vm.event.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

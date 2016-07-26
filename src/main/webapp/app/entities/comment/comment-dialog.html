@@ -1,0 +1,64 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCommentLabel">Create or edit a Comment</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.comment.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.comment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_commentId">Comment Id</label>
+            <input type="number" class="form-control" name="commentId" id="field_commentId"
+                    ng-model="vm.comment.commentId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_commentTitle">Comment Title</label>
+            <input type="text" class="form-control" name="commentTitle" id="field_commentTitle"
+                    ng-model="vm.comment.commentTitle"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_content">Content</label>
+            <input type="text" class="form-control" name="content" id="field_content"
+                    ng-model="vm.comment.content"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="vm.comment.status" id="field_status">
+                <option value="PENDING">PENDING</option>
+                <option value="APPROVED">APPROVED</option>
+                <option value="DISAPPROVED">DISAPPROVED</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="field_people">People</label>
+            <select class="form-control" id="field_people" name="people" ng-model="vm.comment.people" ng-options="people as people.id for people in vm.people track by people.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_post">Post</label>
+            <select class="form-control" id="field_post" name="post" ng-model="vm.comment.post" ng-options="post as post.id for post in vm.posts track by post.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

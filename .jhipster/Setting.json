@@ -1,0 +1,33 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "many-to-one",
+      "relationshipName": "people",
+      "otherEntityName": "people",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "settingId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "settingKey",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "settingValue",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160726043354",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "setting"
+}

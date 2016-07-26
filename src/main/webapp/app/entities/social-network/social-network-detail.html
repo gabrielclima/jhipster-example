@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Social Network</span> {{vm.socialNetwork.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Social Network Id</span></dt>
+        <dd>
+            <span>{{vm.socialNetwork.socialNetworkId}}</span>
+        </dd>
+        <dt><span>Social Network Name</span></dt>
+        <dd>
+            <span>{{vm.socialNetwork.socialNetworkName}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{vm.socialNetwork.description}}</span>
+        </dd>
+        <dt><span>Icon</span></dt>
+        <dd>
+            <span>{{vm.socialNetwork.icon}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="social-network-detail.edit({id:vm.socialNetwork.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

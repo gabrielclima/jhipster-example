@@ -1,0 +1,50 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySettingLabel">Create or edit a Setting</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.setting.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.setting.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_settingId">Setting Id</label>
+            <input type="number" class="form-control" name="settingId" id="field_settingId"
+                    ng-model="vm.setting.settingId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_settingKey">Setting Key</label>
+            <input type="text" class="form-control" name="settingKey" id="field_settingKey"
+                    ng-model="vm.setting.settingKey"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_settingValue">Setting Value</label>
+            <input type="text" class="form-control" name="settingValue" id="field_settingValue"
+                    ng-model="vm.setting.settingValue"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_people">People</label>
+            <select class="form-control" id="field_people" name="people" ng-model="vm.setting.people" ng-options="people as people.id for people in vm.people track by people.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

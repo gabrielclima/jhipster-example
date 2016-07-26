@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Setting</span> {{vm.setting.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Setting Id</span></dt>
+        <dd>
+            <span>{{vm.setting.settingId}}</span>
+        </dd>
+        <dt><span>Setting Key</span></dt>
+        <dd>
+            <span>{{vm.setting.settingKey}}</span>
+        </dd>
+        <dt><span>Setting Value</span></dt>
+        <dd>
+            <span>{{vm.setting.settingValue}}</span>
+        </dd>
+        <dt><span>People</span></dt>
+        <dd>
+            <a ui-sref="people-detail({id:vm.setting.people.id})">{{vm.setting.people.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="setting-detail.edit({id:vm.setting.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

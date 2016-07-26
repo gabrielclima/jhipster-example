@@ -1,0 +1,102 @@
+<div>
+    <h2>People</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="people.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new People
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>People Id</span></th>
+                    <th><span>Birth Date</span></th>
+                    <th><span>Gender</span></th>
+                    <th><span>Preffered Tribes</span></th>
+                    <th><span>Created At</span></th>
+                    <th><span>Updated At</span></th>
+                    <th><span>Social Network</span></th>
+                    <th><span>User</span></th>
+                    <th><span>Event</span></th>
+                    <th><span>Liked Posts</span></th>
+                    <th><span>Tribes</span></th>
+                    <th><span>Posts</span></th>
+                    <th><span>Pictures</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="people in vm.people track by people.id">
+                    <td><a ui-sref="people-detail({id:people.id})">{{people.id}}</a></td>
+                    <td>{{people.peopleId}}</td>
+                        <td>{{people.birthDate | date:'mediumDate'}}</td>
+                    <td>{{people.gender}}</td>
+                    <td>{{people.prefferedTribes}}</td>
+                        <td>{{people.createdAt | date:'mediumDate'}}</td>
+                        <td>{{people.updatedAt | date:'mediumDate'}}</td>
+                    <td>
+                        <span ng-repeat="socialNetwork in people.socialNetworks">
+                            <a class="form-control-static" ui-sref="social-network-detail({id: socialNetwork.id})">{{socialNetwork.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        {{people.user.id}}
+                    </td>
+                    <td>
+                        <span ng-repeat="event in people.events">
+                            <a class="form-control-static" ui-sref="event-detail({id: event.id})">{{event.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="likedPosts in people.likedPosts">
+                            <a class="form-control-static" ui-sref="post-detail({id: likedPosts.id})">{{likedPosts.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="tribes in people.tribes">
+                            <a class="form-control-static" ui-sref="tribe-detail({id: tribes.id})">{{tribes.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <a ui-sref="post-detail({id:people.posts.id})">{{people.posts.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="picture-detail({id:people.pictures.id})">{{people.pictures.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="people-detail({id:people.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="people.edit({id:people.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="people.delete({id:people.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

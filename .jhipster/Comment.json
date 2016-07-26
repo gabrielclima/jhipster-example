@@ -1,0 +1,46 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "many-to-one",
+      "relationshipName": "people",
+      "otherEntityName": "people",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipType": "many-to-one",
+      "relationshipName": "post",
+      "otherEntityName": "post",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "commentId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "commentTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "status",
+      "fieldType": "CommentStatus",
+      "fieldValues": "PENDING,APPROVED,DISAPPROVED"
+    }
+  ],
+  "changelogDate": "20160726043353",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "comment"
+}

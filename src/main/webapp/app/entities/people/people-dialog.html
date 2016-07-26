@@ -1,0 +1,109 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPeopleLabel">Create or edit a People</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.people.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.people.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_peopleId">People Id</label>
+            <input type="number" class="form-control" name="peopleId" id="field_peopleId"
+                    ng-model="vm.people.peopleId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_birthDate">Birth Date</label>
+                <div class="input-group">
+                    <input id="field_birthDate" type="text" class="form-control" name="birthDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.people.birthDate" is-open="vm.datePickerOpenStatus.birthDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('birthDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" ng-model="vm.people.gender" id="field_gender">
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_prefferedTribes">Preffered Tribes</label>
+            <input type="text" class="form-control" name="prefferedTribes" id="field_prefferedTribes"
+                    ng-model="vm.people.prefferedTribes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_createdAt">Created At</label>
+                <div class="input-group">
+                    <input id="field_createdAt" type="text" class="form-control" name="createdAt" uib-datepicker-popup="{{dateformat}}" ng-model="vm.people.createdAt" is-open="vm.datePickerOpenStatus.createdAt"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('createdAt')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_updatedAt">Updated At</label>
+                <div class="input-group">
+                    <input id="field_updatedAt" type="text" class="form-control" name="updatedAt" uib-datepicker-popup="{{dateformat}}" ng-model="vm.people.updatedAt" is-open="vm.datePickerOpenStatus.updatedAt"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('updatedAt')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_socialNetwork">Social Network</label>
+            <select class="form-control" id="field_socialNetwork" multiple name="socialNetwork" ng-model="vm.people.socialNetworks" ng-options="socialNetwork as socialNetwork.id for socialNetwork in vm.socialnetworks track by socialNetwork.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.people.user" ng-options="user as user.id for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_event">Event</label>
+            <select class="form-control" id="field_event" multiple name="event" ng-model="vm.people.events" ng-options="event as event.id for event in vm.events track by event.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_likedPosts">Liked Posts</label>
+            <select class="form-control" id="field_likedPosts" multiple name="likedPosts" ng-model="vm.people.likedPosts" ng-options="post as post.id for post in vm.posts track by post.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_tribes">Tribes</label>
+            <select class="form-control" id="field_tribes" multiple name="tribes" ng-model="vm.people.tribes" ng-options="tribe as tribe.id for tribe in vm.tribes track by tribe.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_posts">Posts</label>
+            <select class="form-control" id="field_posts" name="posts" ng-model="vm.people.posts" ng-options="post as post.id for post in vm.posts track by post.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_pictures">Pictures</label>
+            <select class="form-control" id="field_pictures" name="pictures" ng-model="vm.people.pictures" ng-options="picture as picture.id for picture in vm.pictures track by picture.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

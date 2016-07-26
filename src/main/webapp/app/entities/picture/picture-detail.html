@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span>Picture</span> {{vm.picture.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Picture Id</span></dt>
+        <dd>
+            <span>{{vm.picture.pictureId}}</span>
+        </dd>
+        <dt><span>Picture Title</span></dt>
+        <dd>
+            <span>{{vm.picture.pictureTitle}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{vm.picture.description}}</span>
+        </dd>
+        <dt><span>File</span></dt>
+        <dd>
+            <span>{{vm.picture.file}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{vm.picture.type}}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+            <span>{{vm.picture.createdAt | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+            <span>{{vm.picture.updatedAt | date:'mediumDate'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="picture-detail.edit({id:vm.picture.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

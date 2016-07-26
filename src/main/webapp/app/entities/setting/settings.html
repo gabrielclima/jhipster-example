@@ -1,0 +1,64 @@
+<div>
+    <h2>Settings</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="setting.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Setting
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Setting Id</span></th>
+                    <th><span>Setting Key</span></th>
+                    <th><span>Setting Value</span></th>
+                    <th><span>People</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="setting in vm.settings track by setting.id">
+                    <td><a ui-sref="setting-detail({id:setting.id})">{{setting.id}}</a></td>
+                    <td>{{setting.settingId}}</td>
+                    <td>{{setting.settingKey}}</td>
+                    <td>{{setting.settingValue}}</td>
+                    <td>
+                        <a ui-sref="people-detail({id:setting.people.id})">{{setting.people.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="setting-detail({id:setting.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="setting.edit({id:setting.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="setting.delete({id:setting.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Event.
+    -->
+    <changeSet id="20160726042202-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="events_id"
+                                 baseTableName="event_posts"
+                                 constraintName="fk_event_posts_events_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+        <addForeignKeyConstraint baseColumnNames="posts_id"
+                                 baseTableName="event_posts"
+                                 constraintName="fk_event_posts_posts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="post"/>
+        
+        <addForeignKeyConstraint baseColumnNames="events_id"
+                                 baseTableName="event_social_networks"
+                                 constraintName="fk_event_social_networks_events_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+        <addForeignKeyConstraint baseColumnNames="social_networks_id"
+                                 baseTableName="event_social_networks"
+                                 constraintName="fk_event_social_networks_social_networks_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="social_network"/>
+        
+    </changeSet>
+</databaseChangeLog>

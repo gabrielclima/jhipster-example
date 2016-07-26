@@ -1,0 +1,79 @@
+
+<div>
+    <h2><span>People</span> {{vm.people.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>People Id</span></dt>
+        <dd>
+            <span>{{vm.people.peopleId}}</span>
+        </dd>
+        <dt><span>Birth Date</span></dt>
+        <dd>
+            <span>{{vm.people.birthDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+            <span>{{vm.people.gender}}</span>
+        </dd>
+        <dt><span>Preffered Tribes</span></dt>
+        <dd>
+            <span>{{vm.people.prefferedTribes}}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+            <span>{{vm.people.createdAt | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+            <span>{{vm.people.updatedAt | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Social Network</span></dt>
+        <dd>
+            <span ng-repeat="socialNetwork in vm.people.socialNetworks">
+                <a ui-sref="social-network-detail({id: socialNetwork.id})">{{socialNetwork.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.people.user.id}}
+        </dd>
+        <dt><span>Event</span></dt>
+        <dd>
+            <span ng-repeat="event in vm.people.events">
+                <a ui-sref="event-detail({id: event.id})">{{event.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Liked Posts</span></dt>
+        <dd>
+            <span ng-repeat="likedPosts in vm.people.likedPosts">
+                <a ui-sref="post-detail({id: likedPosts.id})">{{likedPosts.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Tribes</span></dt>
+        <dd>
+            <span ng-repeat="tribes in vm.people.tribes">
+                <a ui-sref="tribe-detail({id: tribes.id})">{{tribes.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Posts</span></dt>
+        <dd>
+            <a ui-sref="post-detail({id:vm.people.posts.id})">{{vm.people.posts.id}}</a>
+        </dd>
+        <dt><span>Pictures</span></dt>
+        <dd>
+            <a ui-sref="picture-detail({id:vm.people.pictures.id})">{{vm.people.pictures.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="people-detail.edit({id:vm.people.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

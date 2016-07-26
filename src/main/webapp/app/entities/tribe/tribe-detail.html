@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span>Tribe</span> {{vm.tribe.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Tribe Id</span></dt>
+        <dd>
+            <span>{{vm.tribe.tribeId}}</span>
+        </dd>
+        <dt><span>Tribe Name</span></dt>
+        <dd>
+            <span>{{vm.tribe.tribeName}}</span>
+        </dd>
+        <dt><span>Tags</span></dt>
+        <dd>
+            <span>{{vm.tribe.tags}}</span>
+        </dd>
+        <dt><span>Icon</span></dt>
+        <dd>
+            <a ui-sref="picture-detail({id:vm.tribe.icon.id})">{{vm.tribe.icon.id}}</a>
+        </dd>
+        <dt><span>Picture</span></dt>
+        <dd>
+            <a ui-sref="picture-detail({id:vm.tribe.picture.id})">{{vm.tribe.picture.id}}</a>
+        </dd>
+        <dt><span>Posts</span></dt>
+        <dd>
+            <span ng-repeat="posts in vm.tribe.posts">
+                <a ui-sref="post-detail({id: posts.id})">{{posts.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Events</span></dt>
+        <dd>
+            <span ng-repeat="events in vm.tribe.events">
+                <a ui-sref="event-detail({id: events.id})">{{events.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="tribe-detail.edit({id:vm.tribe.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

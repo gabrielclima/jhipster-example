@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity People.
+    -->
+    <changeSet id="20160726042204-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="people_id"
+                                 baseTableName="people_social_network"
+                                 constraintName="fk_people_social_network_people_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="people"/>
+        <addForeignKeyConstraint baseColumnNames="social_networks_id"
+                                 baseTableName="people_social_network"
+                                 constraintName="fk_people_social_network_social_networks_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="social_network"/>
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="people"
+                                 constraintName="fk_people_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="people_id"
+                                 baseTableName="people_event"
+                                 constraintName="fk_people_event_people_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="people"/>
+        <addForeignKeyConstraint baseColumnNames="events_id"
+                                 baseTableName="people_event"
+                                 constraintName="fk_people_event_events_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+        
+        <addForeignKeyConstraint baseColumnNames="people_id"
+                                 baseTableName="people_posts"
+                                 constraintName="fk_people_posts_people_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="people"/>
+        <addForeignKeyConstraint baseColumnNames="posts_id"
+                                 baseTableName="people_posts"
+                                 constraintName="fk_people_posts_posts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="post"/>
+        
+        <addForeignKeyConstraint baseColumnNames="people_id"
+                                 baseTableName="people_tribes"
+                                 constraintName="fk_people_tribes_people_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="people"/>
+        <addForeignKeyConstraint baseColumnNames="tribes_id"
+                                 baseTableName="people_tribes"
+                                 constraintName="fk_people_tribes_tribes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tribe"/>
+        
+        <addForeignKeyConstraint baseColumnNames="posts_id"
+                                 baseTableName="people"
+                                 constraintName="fk_people_posts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="post"/>
+
+        <addForeignKeyConstraint baseColumnNames="pictures_id"
+                                 baseTableName="people"
+                                 constraintName="fk_people_pictures_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="picture"/>
+
+    </changeSet>
+</databaseChangeLog>
