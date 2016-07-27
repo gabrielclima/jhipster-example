@@ -19,32 +19,20 @@
             <thead>
                 <tr>
                     <th><span>ID</span></th>
-                    <th><span>Post Id</span></th>
-                    <th><span>Post Title</span></th>
-                    <th><span>Excerpt</span></th>
-                    <th><span>Content</span></th>
+                    <th><span>Título</span></th>
                     <th><span>Status</span></th>
-                    <th><span>Created At</span></th>
-                    <th><span>Updated At</span></th>
-                    <th><span>Tags</span></th>
-                    <th><span>Show Comments</span></th>
-                    <th><span>Permalink</span></th>
+                    <th><span>Data de Criação</span></th>
+                    <th><span>Última Atualização</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="post in vm.posts track by post.id">
-                    <td><a ui-sref="post-detail({id:post.id})">{{post.id}}</a></td>
                     <td>{{post.postId}}</td>
                     <td>{{post.postTitle}}</td>
-                    <td>{{post.excerpt}}</td>
-                    <td>{{post.content}}</td>
                     <td>{{post.status}}</td>
                         <td>{{post.createdAt | date:'mediumDate'}}</td>
                         <td>{{post.updatedAt | date:'mediumDate'}}</td>
-                    <td>{{post.tags}}</td>
-                    <td>{{post.showComments}}</td>
-                    <td>{{post.permalink}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
