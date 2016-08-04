@@ -4,23 +4,12 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myTribeLabel">Create or edit a Tribe</h4>
+        <h4 class="modal-title" id="myTribeLabel">Criar/Editar Tribo</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.tribe.id">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.tribe.id" readonly />
-        </div>
         <div class="form-group">
-            <label class="control-label" for="field_tribeId">Tribe Id</label>
-            <input type="number" class="form-control" name="tribeId" id="field_tribeId"
-                    ng-model="vm.tribe.tribeId"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_tribeName">Tribe Name</label>
+            <label class="control-label" for="field_tribeName">Nome</label>
             <input type="text" class="form-control" name="tribeName" id="field_tribeName"
                     ng-model="vm.tribe.tribeName"
                      />
@@ -32,7 +21,7 @@
                      />
         </div>
 
-        <div class="form-group">
+        <!--<div class="form-group">
             <label for="field_icon">Icon</label>
             <select class="form-control" id="field_icon" name="icon" ng-model="vm.tribe.icon" ng-options="picture as picture.id for picture in vm.pictures track by picture.id">
                 <option value=""></option>
@@ -51,7 +40,7 @@
         <div class="form-group">
             <label for="field_events">Events</label>
             <select class="form-control" id="field_events" multiple name="events" ng-model="vm.tribe.events" ng-options="event as event.id for event in vm.events track by event.id"></select>
-        </div>
+        </div>-->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('People Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockPeople, MockSocialNetwork, MockUser, MockEvent, MockPost, MockComment, MockTribe, MockSetting, MockPicture;
+        var MockEntity, MockPreviousState, MockPeople, MockUser, MockComment, MockSetting, MockSocialNetwork, MockEvent, MockPost, MockTribe, MockPicture;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,13 +13,13 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockPeople = jasmine.createSpy('MockPeople');
-            MockSocialNetwork = jasmine.createSpy('MockSocialNetwork');
             MockUser = jasmine.createSpy('MockUser');
+            MockComment = jasmine.createSpy('MockComment');
+            MockSetting = jasmine.createSpy('MockSetting');
+            MockSocialNetwork = jasmine.createSpy('MockSocialNetwork');
             MockEvent = jasmine.createSpy('MockEvent');
             MockPost = jasmine.createSpy('MockPost');
-            MockComment = jasmine.createSpy('MockComment');
             MockTribe = jasmine.createSpy('MockTribe');
-            MockSetting = jasmine.createSpy('MockSetting');
             MockPicture = jasmine.createSpy('MockPicture');
             
 
@@ -29,13 +29,13 @@ describe('Controller Tests', function() {
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
                 'People': MockPeople,
-                'SocialNetwork': MockSocialNetwork,
                 'User': MockUser,
+                'Comment': MockComment,
+                'Setting': MockSetting,
+                'SocialNetwork': MockSocialNetwork,
                 'Event': MockEvent,
                 'Post': MockPost,
-                'Comment': MockComment,
                 'Tribe': MockTribe,
-                'Setting': MockSetting,
                 'Picture': MockPicture
             };
             createController = function() {

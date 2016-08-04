@@ -64,14 +64,14 @@
         </div>
 
         <div class="form-group">
-            <label for="field_socialNetwork">Social Network</label>
-            <select class="form-control" id="field_socialNetwork" multiple name="socialNetwork" ng-model="vm.people.socialNetworks" ng-options="socialNetwork as socialNetwork.id for socialNetwork in vm.socialnetworks track by socialNetwork.id"></select>
-        </div>
-        <div class="form-group">
             <label for="field_user">User</label>
             <select class="form-control" id="field_user" name="user" ng-model="vm.people.user" ng-options="user as user.id for user in vm.users track by user.id">
                 <option value=""></option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="field_socialNetwork">Social Network</label>
+            <select class="form-control" id="field_socialNetwork" multiple name="socialNetwork" ng-model="vm.people.socialNetworks" ng-options="socialNetwork as socialNetwork.id for socialNetwork in vm.socialnetworks track by socialNetwork.id"></select>
         </div>
         <div class="form-group">
             <label for="field_event">Event</label>

@@ -46,16 +46,26 @@ public class People implements Serializable {
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
+
+    @OneToMany(mappedBy = "people")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Comment> comments = new HashSet<>();
+
+    @OneToMany(mappedBy = "people")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Setting> settings = new HashSet<>();
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "people_social_network",
                joinColumns = @JoinColumn(name="people_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="social_networks_id", referencedColumnName="ID"))
     private Set<SocialNetwork> socialNetworks = new HashSet<>();
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private User user;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -71,22 +81,12 @@ public class People implements Serializable {
                inverseJoinColumns = @JoinColumn(name="liked_posts_id", referencedColumnName="ID"))
     private Set<Post> likedPosts = new HashSet<>();
 
-    @OneToMany(mappedBy = "people")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Comment> comments = new HashSet<>();
-
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "people_tribes",
                joinColumns = @JoinColumn(name="people_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="tribes_id", referencedColumnName="ID"))
     private Set<Tribe> tribes = new HashSet<>();
-
-    @OneToMany(mappedBy = "people")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Setting> settings = new HashSet<>();
 
     @ManyToOne
     private Post posts;
@@ -150,20 +150,36 @@ public class People implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public Set<SocialNetwork> getSocialNetworks() {
-        return socialNetworks;
-    }
-
-    public void setSocialNetworks(Set<SocialNetwork> socialNetworks) {
-        this.socialNetworks = socialNetworks;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Set<Setting> getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Set<Setting> settings) {
+        this.settings = settings;
+    }
+
+    public Set<SocialNetwork> getSocialNetworks() {
+        return socialNetworks;
+    }
+
+    public void setSocialNetworks(Set<SocialNetwork> socialNetworks) {
+        this.socialNetworks = socialNetworks;
     }
 
     public Set<Event> getEvents() {
@@ -182,28 +198,12 @@ public class People implements Serializable {
         this.likedPosts = posts;
     }
 
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-
     public Set<Tribe> getTribes() {
         return tribes;
     }
 
     public void setTribes(Set<Tribe> tribes) {
         this.tribes = tribes;
-    }
-
-    public Set<Setting> getSettings() {
-        return settings;
-    }
-
-    public void setSettings(Set<Setting> settings) {
-        this.settings = settings;
     }
 
     public Post getPosts() {

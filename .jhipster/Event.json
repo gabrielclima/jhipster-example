@@ -1,7 +1,6 @@
 {
   "relationships": [
     {
-      "relationshipId": 1,
       "relationshipType": "many-to-many",
       "relationshipName": "posts",
       "otherEntityName": "post",
@@ -9,7 +8,6 @@
       "ownerSide": true
     },
     {
-      "relationshipId": 2,
       "relationshipType": "many-to-many",
       "relationshipName": "socialNetworks",
       "otherEntityName": "socialNetwork",
@@ -17,7 +15,6 @@
       "ownerSide": true
     },
     {
-      "relationshipId": 3,
       "relationshipType": "many-to-many",
       "relationshipName": "people",
       "otherEntityName": "people",
@@ -25,7 +22,6 @@
       "otherEntityRelationshipName": "event"
     },
     {
-      "relationshipId": 4,
       "relationshipType": "many-to-many",
       "relationshipName": "tribes",
       "otherEntityName": "tribe",
@@ -35,59 +31,49 @@
   ],
   "fields": [
     {
-      "fieldId": 1,
       "fieldName": "eventId",
       "fieldType": "Long"
     },
     {
-      "fieldId": 2,
       "fieldName": "eventName",
       "fieldType": "String"
     },
     {
-      "fieldId": 3,
       "fieldName": "description",
       "fieldType": "String"
     },
     {
-      "fieldId": 4,
       "fieldName": "period",
       "fieldType": "String"
     },
     {
-      "fieldId": 5,
       "fieldName": "createdAt",
       "fieldType": "LocalDate"
     },
     {
-      "fieldId": 6,
       "fieldName": "tags",
       "fieldType": "String"
     },
     {
-      "fieldId": 7,
       "fieldName": "link",
       "fieldType": "String"
     },
     {
-      "fieldId": 8,
       "fieldName": "latitude",
       "fieldType": "BigDecimal"
     },
     {
-      "fieldId": 9,
       "fieldName": "longitude",
       "fieldType": "BigDecimal"
     },
     {
-      "fieldId": 10,
       "fieldName": "picture",
       "fieldType": "String"
     }
   ],
-  "changelogDate": "20160726043349",
+  "changelogDate": "20160804030414",
+  "entityTableName": "event",
   "dto": "no",
   "pagination": "no",
-  "service": "no",
-  "entityTableName": "event"
+  "service": "no"
 }

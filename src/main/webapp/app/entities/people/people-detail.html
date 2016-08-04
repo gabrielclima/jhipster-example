@@ -28,15 +28,15 @@
         <dd>
             <span>{{vm.people.updatedAt | date:'mediumDate'}}</span>
         </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.people.user.id}}
+        </dd>
         <dt><span>Social Network</span></dt>
         <dd>
             <span ng-repeat="socialNetwork in vm.people.socialNetworks">
                 <a ui-sref="social-network-detail({id: socialNetwork.id})">{{socialNetwork.id}}</a>{{$last ? '' : ', '}}
             </span>
-        </dd>
-        <dt><span>User</span></dt>
-        <dd>
-            {{vm.people.user.id}}
         </dd>
         <dt><span>Event</span></dt>
         <dd>

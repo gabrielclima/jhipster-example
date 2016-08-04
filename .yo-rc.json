@@ -17,8 +17,7 @@
     "useSass": true,
     "applicationType": "monolith",
     "testFrameworks": [
-      "gatling",
-      "cucumber"
+      "gatling"
     ],
     "jhiPrefix": "jhi",
     "enableTranslation": false

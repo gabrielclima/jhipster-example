@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Tribe.
+    -->
+    <changeSet id="20160804030411-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="icon_id"
+                                 baseTableName="tribe"
+                                 constraintName="fk_tribe_icon_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="picture"/>
+
+        <addForeignKeyConstraint baseColumnNames="picture_id"
+                                 baseTableName="tribe"
+                                 constraintName="fk_tribe_picture_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="picture"/>
+
+        <addForeignKeyConstraint baseColumnNames="tribes_id"
+                                 baseTableName="tribe_posts"
+                                 constraintName="fk_tribe_posts_tribes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tribe"/>
+        <addForeignKeyConstraint baseColumnNames="posts_id"
+                                 baseTableName="tribe_posts"
+                                 constraintName="fk_tribe_posts_posts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="post"/>
+        
+        <addForeignKeyConstraint baseColumnNames="tribes_id"
+                                 baseTableName="tribe_events"
+                                 constraintName="fk_tribe_events_tribes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tribe"/>
+        <addForeignKeyConstraint baseColumnNames="events_id"
+                                 baseTableName="tribe_events"
+                                 constraintName="fk_tribe_events_events_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+        
+    </changeSet>
+</databaseChangeLog>

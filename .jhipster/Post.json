@@ -1,21 +1,18 @@
 {
   "relationships": [
     {
-      "relationshipId": 1,
       "relationshipType": "one-to-many",
       "relationshipName": "comments",
       "otherEntityName": "comment",
       "otherEntityRelationshipName": "post"
     },
     {
-      "relationshipId": 2,
       "relationshipType": "one-to-many",
       "relationshipName": "author",
       "otherEntityName": "people",
       "otherEntityRelationshipName": "posts"
     },
     {
-      "relationshipId": 3,
       "relationshipType": "many-to-many",
       "relationshipName": "events",
       "otherEntityName": "event",
@@ -23,7 +20,6 @@
       "otherEntityRelationshipName": "posts"
     },
     {
-      "relationshipId": 4,
       "relationshipType": "many-to-many",
       "relationshipName": "peoples",
       "otherEntityName": "people",
@@ -31,7 +27,6 @@
       "otherEntityRelationshipName": "likedPosts"
     },
     {
-      "relationshipId": 5,
       "relationshipType": "many-to-many",
       "relationshipName": "tribes",
       "otherEntityName": "tribe",
@@ -41,59 +36,49 @@
   ],
   "fields": [
     {
-      "fieldId": 1,
       "fieldName": "postId",
       "fieldType": "Long"
     },
     {
-      "fieldId": 2,
       "fieldName": "postTitle",
       "fieldType": "String"
     },
     {
-      "fieldId": 3,
       "fieldName": "excerpt",
       "fieldType": "String"
     },
     {
-      "fieldId": 4,
       "fieldName": "content",
       "fieldType": "String"
     },
     {
-      "fieldId": 5,
       "fieldName": "status",
       "fieldType": "String"
     },
     {
-      "fieldId": 6,
       "fieldName": "createdAt",
       "fieldType": "LocalDate"
     },
     {
-      "fieldId": 7,
       "fieldName": "updatedAt",
       "fieldType": "LocalDate"
     },
     {
-      "fieldId": 8,
       "fieldName": "tags",
       "fieldType": "String"
     },
     {
-      "fieldId": 9,
       "fieldName": "showComments",
       "fieldType": "Boolean"
     },
     {
-      "fieldId": 10,
       "fieldName": "permalink",
       "fieldType": "String"
     }
   ],
-  "changelogDate": "20160726043347",
+  "changelogDate": "20160804030412",
+  "entityTableName": "post",
   "dto": "no",
   "pagination": "no",
-  "service": "no",
-  "entityTableName": "post"
+  "service": "no"
 }

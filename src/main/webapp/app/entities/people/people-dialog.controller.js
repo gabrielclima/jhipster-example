@@ -5,9 +5,9 @@
         .module('tribosApp')
         .controller('PeopleDialogController', PeopleDialogController);
 
-    PeopleDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'People', 'SocialNetwork', 'User', 'Event', 'Post', 'Comment', 'Tribe', 'Setting', 'Picture'];
+    PeopleDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'People', 'User', 'Comment', 'Setting', 'SocialNetwork', 'Event', 'Post', 'Tribe', 'Picture'];
 
-    function PeopleDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, People, SocialNetwork, User, Event, Post, Comment, Tribe, Setting, Picture) {
+    function PeopleDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, People, User, Comment, Setting, SocialNetwork, Event, Post, Tribe, Picture) {
         var vm = this;
 
         vm.people = entity;
@@ -15,13 +15,13 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.socialnetworks = SocialNetwork.query();
         vm.users = User.query();
+        vm.comments = Comment.query();
+        vm.settings = Setting.query();
+        vm.socialnetworks = SocialNetwork.query();
         vm.events = Event.query();
         vm.posts = Post.query();
-        vm.comments = Comment.query();
         vm.tribes = Tribe.query();
-        vm.settings = Setting.query();
         vm.pictures = Picture.query();
 
         $timeout(function (){

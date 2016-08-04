@@ -1,7 +1,6 @@
 {
   "relationships": [
     {
-      "relationshipId": 1,
       "relationshipType": "one-to-many",
       "relationshipName": "author",
       "otherEntityName": "people",
@@ -10,45 +9,38 @@
   ],
   "fields": [
     {
-      "fieldId": 1,
       "fieldName": "pictureId",
       "fieldType": "Long"
     },
     {
-      "fieldId": 2,
       "fieldName": "pictureTitle",
       "fieldType": "String"
     },
     {
-      "fieldId": 3,
       "fieldName": "description",
       "fieldType": "String"
     },
     {
-      "fieldId": 4,
       "fieldName": "file",
       "fieldType": "String"
     },
     {
-      "fieldId": 5,
       "fieldName": "type",
       "fieldType": "PictureType",
       "fieldValues": "ICON,POST,EVENT"
     },
     {
-      "fieldId": 6,
       "fieldName": "createdAt",
       "fieldType": "LocalDate"
     },
     {
-      "fieldId": 7,
       "fieldName": "updatedAt",
       "fieldType": "LocalDate"
     }
   ],
-  "changelogDate": "20160726043348",
+  "changelogDate": "20160804030413",
+  "entityTableName": "picture",
   "dto": "no",
   "pagination": "no",
-  "service": "no",
-  "entityTableName": "picture"
+  "service": "no"
 }

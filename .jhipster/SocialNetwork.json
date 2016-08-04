@@ -1,7 +1,6 @@
 {
   "relationships": [
     {
-      "relationshipId": 1,
       "relationshipType": "many-to-many",
       "relationshipName": "people",
       "otherEntityName": "people",
@@ -9,7 +8,6 @@
       "otherEntityRelationshipName": "socialNetwork"
     },
     {
-      "relationshipId": 2,
       "relationshipType": "many-to-many",
       "relationshipName": "events",
       "otherEntityName": "event",
@@ -19,29 +17,25 @@
   ],
   "fields": [
     {
-      "fieldId": 1,
       "fieldName": "socialNetworkId",
       "fieldType": "Long"
     },
     {
-      "fieldId": 2,
       "fieldName": "socialNetworkName",
       "fieldType": "String"
     },
     {
-      "fieldId": 3,
       "fieldName": "description",
       "fieldType": "String"
     },
     {
-      "fieldId": 4,
       "fieldName": "icon",
       "fieldType": "String"
     }
   ],
-  "changelogDate": "20160726043350",
+  "changelogDate": "20160804030415",
+  "entityTableName": "social_network",
   "dto": "no",
   "pagination": "no",
-  "service": "no",
-  "entityTableName": "social_network"
+  "service": "no"
 }

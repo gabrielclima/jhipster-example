@@ -25,8 +25,8 @@
                     <th><span>Preffered Tribes</span></th>
                     <th><span>Created At</span></th>
                     <th><span>Updated At</span></th>
-                    <th><span>Social Network</span></th>
                     <th><span>User</span></th>
+                    <th><span>Social Network</span></th>
                     <th><span>Event</span></th>
                     <th><span>Liked Posts</span></th>
                     <th><span>Tribes</span></th>
@@ -45,12 +45,12 @@
                         <td>{{people.createdAt | date:'mediumDate'}}</td>
                         <td>{{people.updatedAt | date:'mediumDate'}}</td>
                     <td>
+                        {{people.user.id}}
+                    </td>
+                    <td>
                         <span ng-repeat="socialNetwork in people.socialNetworks">
                             <a class="form-control-static" ui-sref="social-network-detail({id: socialNetwork.id})">{{socialNetwork.id}}</a>{{$last ? '' : ', '}}
                         </span>
-                    </td>
-                    <td>
-                        {{people.user.id}}
                     </td>
                     <td>
                         <span ng-repeat="event in people.events">

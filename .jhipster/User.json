@@ -14,7 +14,7 @@
       "fieldType": "Long"
     }
   ],
-  "changelogDate": "20160726042348",
+  "changelogDate": "20160804030417",
   "entityTableName": "user",
   "dto": "no",
   "pagination": "no",
