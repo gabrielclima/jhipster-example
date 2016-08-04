@@ -15,12 +15,6 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_description">Descrição</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                    ng-model="vm.event.description"
-                     />
-        </div>
-        <div class="form-group">
             <label class="control-label" for="field_period">Data(s)</label>
             <input type="text" class="form-control" name="period" id="field_period"
                     ng-model="vm.event.period"
@@ -38,12 +32,18 @@
                     ng-model="vm.event.link"
                      />
         </div>
-        <!--<div class="form-group">
-            <label class="control-label" for="field_picture">Picture</label>
+
+        <div class="form-group">
+            <label class="control-label" for="field_picture">Imagem de Capa</label>
             <input type="text" class="form-control" name="picture" id="field_picture"
                     ng-model="vm.event.picture"
                      />
-        </div>-->
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_description">Descrição</label>
+            <div text-angular id="field_description" ng-model="vm.event.description"></div>
+        </div>
 
     </div>
     <div class="modal-footer">
