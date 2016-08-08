@@ -1,5 +1,5 @@
 <div>
-    <h2>Pictures</h2>
+    <h2>Imagens</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="picture.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Picture
+                        Enviar nova imagem
                     </span>
                 </button>
             </div>
@@ -19,26 +19,20 @@
             <thead>
                 <tr>
                     <th><span>ID</span></th>
-                    <th><span>Picture Id</span></th>
-                    <th><span>Picture Title</span></th>
-                    <th><span>Description</span></th>
+                    <th><span>Título</span></th>
+                    <th><span>Descrição</span></th>
                     <th><span>File</span></th>
-                    <th><span>Type</span></th>
-                    <th><span>Created At</span></th>
-                    <th><span>Updated At</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="picture in vm.pictures track by picture.id">
                     <td><a ui-sref="picture-detail({id:picture.id})">{{picture.id}}</a></td>
-                    <td>{{picture.pictureId}}</td>
                     <td>{{picture.pictureTitle}}</td>
                     <td>{{picture.description}}</td>
                     <td>{{picture.file}}</td>
                     <td>{{picture.type}}</td>
                         <td>{{picture.createdAt | date:'mediumDate'}}</td>
-                        <td>{{picture.updatedAt | date:'mediumDate'}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

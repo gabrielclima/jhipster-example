@@ -104,7 +104,6 @@ public class EventResourceIntTest {
         event.setLink(DEFAULT_LINK);
         event.setLatitude(DEFAULT_LATITUDE);
         event.setLongitude(DEFAULT_LONGITUDE);
-        event.setPicture(DEFAULT_PICTURE);
     }
 
     @Test
@@ -208,7 +207,6 @@ public class EventResourceIntTest {
         updatedEvent.setLink(UPDATED_LINK);
         updatedEvent.setLatitude(UPDATED_LATITUDE);
         updatedEvent.setLongitude(UPDATED_LONGITUDE);
-        updatedEvent.setPicture(UPDATED_PICTURE);
 
         restEventMockMvc.perform(put("/api/events")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)

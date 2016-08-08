@@ -43,8 +43,7 @@ entity Event {
     tags String,
     link String,
     latitude BigDecimal,
-    longitude BigDecimal,
-    picture String
+    longitude BigDecimal
 }
 
 entity SocialNetwork {
@@ -138,6 +137,10 @@ relationship ManyToOne {
 
 relationship ManyToOne {
 	Tribe{picture} to Picture
+}
+
+relationship ManyToOne {
+	Event{picture} to Picture
 }
 
 relationship ManyToMany {

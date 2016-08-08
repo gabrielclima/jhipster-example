@@ -1,6 +1,12 @@
 {
   "relationships": [
     {
+      "relationshipType": "many-to-one",
+      "relationshipName": "picture",
+      "otherEntityName": "picture",
+      "otherEntityField": "id"
+    },
+    {
       "relationshipType": "many-to-many",
       "relationshipName": "posts",
       "otherEntityName": "post",
@@ -65,13 +71,9 @@
     {
       "fieldName": "longitude",
       "fieldType": "BigDecimal"
-    },
-    {
-      "fieldName": "picture",
-      "fieldType": "String"
     }
   ],
-  "changelogDate": "20160804030414",
+  "changelogDate": "20160806221053",
   "entityTableName": "event",
   "dto": "no",
   "pagination": "no",

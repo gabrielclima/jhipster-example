@@ -45,8 +45,6 @@ import br.com.tribosapp.domain.enumeration.PictureType;
 public class PictureResourceIntTest {
 
 
-    private static final Long DEFAULT_PICTURE_ID = 1L;
-    private static final Long UPDATED_PICTURE_ID = 2L;
     private static final String DEFAULT_PICTURE_TITLE = "AAAAA";
     private static final String UPDATED_PICTURE_TITLE = "BBBBB";
     private static final String DEFAULT_DESCRIPTION = "AAAAA";
@@ -89,7 +87,6 @@ public class PictureResourceIntTest {
     @Before
     public void initTest() {
         picture = new Picture();
-        picture.setPictureId(DEFAULT_PICTURE_ID);
         picture.setPictureTitle(DEFAULT_PICTURE_TITLE);
         picture.setDescription(DEFAULT_DESCRIPTION);
         picture.setFile(DEFAULT_FILE);
@@ -114,7 +111,6 @@ public class PictureResourceIntTest {
         List<Picture> pictures = pictureRepository.findAll();
         assertThat(pictures).hasSize(databaseSizeBeforeCreate + 1);
         Picture testPicture = pictures.get(pictures.size() - 1);
-        assertThat(testPicture.getPictureId()).isEqualTo(DEFAULT_PICTURE_ID);
         assertThat(testPicture.getPictureTitle()).isEqualTo(DEFAULT_PICTURE_TITLE);
         assertThat(testPicture.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testPicture.getFile()).isEqualTo(DEFAULT_FILE);
@@ -134,7 +130,6 @@ public class PictureResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(picture.getId().intValue())))
-                .andExpect(jsonPath("$.[*].pictureId").value(hasItem(DEFAULT_PICTURE_ID.intValue())))
                 .andExpect(jsonPath("$.[*].pictureTitle").value(hasItem(DEFAULT_PICTURE_TITLE.toString())))
                 .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
                 .andExpect(jsonPath("$.[*].file").value(hasItem(DEFAULT_FILE.toString())))
@@ -154,7 +149,6 @@ public class PictureResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(picture.getId().intValue()))
-            .andExpect(jsonPath("$.pictureId").value(DEFAULT_PICTURE_ID.intValue()))
             .andExpect(jsonPath("$.pictureTitle").value(DEFAULT_PICTURE_TITLE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.file").value(DEFAULT_FILE.toString()))
@@ -181,7 +175,6 @@ public class PictureResourceIntTest {
         // Update the picture
         Picture updatedPicture = new Picture();
         updatedPicture.setId(picture.getId());
-        updatedPicture.setPictureId(UPDATED_PICTURE_ID);
         updatedPicture.setPictureTitle(UPDATED_PICTURE_TITLE);
         updatedPicture.setDescription(UPDATED_DESCRIPTION);
         updatedPicture.setFile(UPDATED_FILE);
@@ -198,7 +191,6 @@ public class PictureResourceIntTest {
         List<Picture> pictures = pictureRepository.findAll();
         assertThat(pictures).hasSize(databaseSizeBeforeUpdate);
         Picture testPicture = pictures.get(pictures.size() - 1);
-        assertThat(testPicture.getPictureId()).isEqualTo(UPDATED_PICTURE_ID);
         assertThat(testPicture.getPictureTitle()).isEqualTo(UPDATED_PICTURE_TITLE);
         assertThat(testPicture.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testPicture.getFile()).isEqualTo(UPDATED_FILE);

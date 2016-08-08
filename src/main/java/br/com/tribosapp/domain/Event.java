@@ -47,27 +47,27 @@ public class Event implements Serializable {
     @Column(name = "link")
     private String link;
 
-    @Column(name = "latitude", precision=10, scale=2)
+    @Column(name = "latitude", precision = 10, scale = 2)
     private BigDecimal latitude;
 
-    @Column(name = "longitude", precision=10, scale=2)
+    @Column(name = "longitude", precision = 10, scale = 2)
     private BigDecimal longitude;
 
-    @Column(name = "picture")
-    private String picture;
+    @ManyToOne
+    private Picture picture;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "event_posts",
-               joinColumns = @JoinColumn(name="events_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="posts_id", referencedColumnName="ID"))
+            joinColumns = @JoinColumn(name = "events_id", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "posts_id", referencedColumnName = "ID"))
     private Set<Post> posts = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "event_social_networks",
-               joinColumns = @JoinColumn(name="events_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="social_networks_id", referencedColumnName="ID"))
+            joinColumns = @JoinColumn(name = "events_id", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "social_networks_id", referencedColumnName = "ID"))
     private Set<SocialNetwork> socialNetworks = new HashSet<>();
 
     @ManyToMany(mappedBy = "events")
@@ -160,11 +160,11 @@ public class Event implements Serializable {
         this.longitude = longitude;
     }
 
-    public String getPicture() {
+    public Picture getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(Picture picture) {
         this.picture = picture;
     }
 
@@ -209,7 +209,7 @@ public class Event implements Serializable {
             return false;
         }
         Event event = (Event) o;
-        if(event.id == null || id == null) {
+        if (event.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, event.id);
@@ -223,17 +223,17 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "Event{" +
-            "id=" + id +
-            ", eventId='" + eventId + "'" +
-            ", eventName='" + eventName + "'" +
-            ", description='" + description + "'" +
-            ", period='" + period + "'" +
-            ", createdAt='" + createdAt + "'" +
-            ", tags='" + tags + "'" +
-            ", link='" + link + "'" +
-            ", latitude='" + latitude + "'" +
-            ", longitude='" + longitude + "'" +
-            ", picture='" + picture + "'" +
-            '}';
+                "id=" + id +
+                ", eventId='" + eventId + "'" +
+                ", eventName='" + eventName + "'" +
+                ", description='" + description + "'" +
+                ", period='" + period + "'" +
+                ", createdAt='" + createdAt + "'" +
+                ", tags='" + tags + "'" +
+                ", link='" + link + "'" +
+                ", latitude='" + latitude + "'" +
+                ", longitude='" + longitude + "'" +
+                ", picture='" + picture + "'" +
+                '}';
     }
 }

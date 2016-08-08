@@ -1,6 +1,8 @@
 package br.com.tribosapp.domain;
 
+import br.com.tribosapp.security.SecurityUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.io.FilenameUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import java.util.UUID;
 
 import br.com.tribosapp.domain.enumeration.PictureType;
 
@@ -22,13 +25,11 @@ import br.com.tribosapp.domain.enumeration.PictureType;
 public class Picture implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final String FOLDER = "C:\\wamp\\www\\tribos\\";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "picture_id")
-    private Long pictureId;
 
     @Column(name = "picture_title")
     private String pictureTitle;
@@ -60,14 +61,6 @@ public class Picture implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPictureId() {
-        return pictureId;
-    }
-
-    public void setPictureId(Long pictureId) {
-        this.pictureId = pictureId;
     }
 
     public String getPictureTitle() {
@@ -135,7 +128,7 @@ public class Picture implements Serializable {
             return false;
         }
         Picture picture = (Picture) o;
-        if(picture.id == null || id == null) {
+        if (picture.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, picture.id);
@@ -148,15 +141,22 @@ public class Picture implements Serializable {
 
     @Override
     public String toString() {
-        return "Picture{" +
-            "id=" + id +
-            ", pictureId='" + pictureId + "'" +
-            ", pictureTitle='" + pictureTitle + "'" +
-            ", description='" + description + "'" +
-            ", file='" + file + "'" +
-            ", type='" + type + "'" +
-            ", createdAt='" + createdAt + "'" +
-            ", updatedAt='" + updatedAt + "'" +
-            '}';
+        return "Picture{" + "id=" + id + ", pictureTitle='" + pictureTitle + "'" + ", description='" + description + "'"
+                + ", file='" + file + "'" + ", type='" + type + "'" + ", createdAt='" + createdAt + "'"
+                + ", updatedAt='" + updatedAt + "'" + '}';
+    }
+
+    public static String generateFilename(String originalFilename) {
+        StringBuilder filename = new StringBuilder();
+        String separator = "_";
+
+        filename.append(FOLDER);
+        filename.append(System.currentTimeMillis());
+        filename.append(separator);
+        filename.append(UUID.randomUUID());
+        filename.append(".");
+        filename.append(FilenameUtils.getExtension(originalFilename));
+
+        return filename.toString();
     }
 }

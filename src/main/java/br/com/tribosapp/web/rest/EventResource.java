@@ -1,9 +1,13 @@
 package br.com.tribosapp.web.rest;
 
+import br.com.tribosapp.domain.Picture;
+import br.com.tribosapp.security.SecurityUtils;
 import com.codahale.metrics.annotation.Timed;
 import br.com.tribosapp.domain.Event;
 import br.com.tribosapp.repository.EventRepository;
 import br.com.tribosapp.web.rest.util.HeaderUtil;
+import org.apache.catalina.security.SecurityUtil;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -11,12 +15,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * REST controller for managing Event.
@@ -26,10 +35,10 @@ import java.util.Optional;
 public class EventResource {
 
     private final Logger log = LoggerFactory.getLogger(EventResource.class);
-        
+
     @Inject
     private EventRepository eventRepository;
-    
+
     /**
      * POST  /events : Create a new event.
      *
@@ -38,8 +47,8 @@ public class EventResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/events",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Event> createEvent(@RequestBody Event event) throws URISyntaxException {
         log.debug("REST request to save Event : {}", event);
@@ -48,8 +57,8 @@ public class EventResource {
         }
         Event result = eventRepository.save(event);
         return ResponseEntity.created(new URI("/api/events/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("event", result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert("event", result.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -62,18 +71,39 @@ public class EventResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @RequestMapping(value = "/events",
-        method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Event> updateEvent(@RequestBody Event event) throws URISyntaxException {
+    public ResponseEntity<Event> updateEvent(@RequestParam("picture") MultipartFile file, @RequestBody Event event) throws URISyntaxException {
         log.debug("REST request to update Event : {}", event);
         if (event.getId() == null) {
             return createEvent(event);
         }
         Event result = eventRepository.save(event);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("event", event.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert("event", event.getId().toString()))
+                .body(result);
+    }
+
+    @RequestMapping(value = "/upload",
+            method = RequestMethod.POST)
+    public void uploadPicture(@RequestParam("file") MultipartFile file) throws IOException {
+
+        byte[] bytes;
+
+        if (!file.isEmpty()) {
+            bytes = file.getBytes();
+
+            //store file in storage
+            try {
+                FileUtils.writeByteArrayToFile(new File("C:\\wamp\\www\\tribos\\" + Picture.generateFilename(file.getOriginalFilename())), bytes);
+
+            } catch (Exception e) {
+            }
+
+        }
+
+        System.out.println(String.format("receive %s", file.getOriginalFilename()));
     }
 
     /**
@@ -82,8 +112,8 @@ public class EventResource {
      * @return the ResponseEntity with status 200 (OK) and the list of events in body
      */
     @RequestMapping(value = "/events",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Event> getAllEvents() {
         log.debug("REST request to get all Events");
@@ -98,17 +128,17 @@ public class EventResource {
      * @return the ResponseEntity with status 200 (OK) and with body the event, or with status 404 (Not Found)
      */
     @RequestMapping(value = "/events/{id}",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Event> getEvent(@PathVariable Long id) {
         log.debug("REST request to get Event : {}", id);
         Event event = eventRepository.findOneWithEagerRelationships(id);
         return Optional.ofNullable(event)
-            .map(result -> new ResponseEntity<>(
-                result,
-                HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(result -> new ResponseEntity<>(
+                        result,
+                        HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     /**
@@ -118,8 +148,8 @@ public class EventResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @RequestMapping(value = "/events/{id}",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         log.debug("REST request to delete Event : {}", id);

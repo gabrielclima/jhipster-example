@@ -35,9 +35,15 @@
 
         <div class="form-group">
             <label class="control-label" for="field_picture">Imagem de Capa</label>
-            <input type="text" class="form-control" name="picture" id="field_picture"
+            <!--<input type="text" class="form-control" name="picture" id="field_picture"
                     ng-model="vm.event.picture"
-                     />
+                     />-->
+            <!--<input type="file" ngf-select ngf-accept="'image/*'" class="form-control" name="picture" id="field_picture"
+                    ng-model="vm.event.picture"
+                     />-->
+            <input type="file" class="form-control" ngf-select ng-model="vm.event.picture" name="picture" ngf-pattern="'image/*'"
+                ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+            <!--    ngf-resize="{width: 100, height: 100}"-->
         </div>
 
         <div class="form-group">
