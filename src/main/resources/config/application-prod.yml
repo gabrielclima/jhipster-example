@@ -18,10 +18,10 @@ spring:
         livereload:
             enabled: false
     datasource:
-        url: jdbc:mysql://localhost:3306/tribos?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://tribos.cachfxlamuui.us-west-2.rds.amazonaws.com:3306/tribos?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
-        username: root
-        password:
+        username: tribos
+        password: CPwnyjBAmr7KfPwY
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -33,7 +33,7 @@ spring:
         database: MYSQL
         show-sql: false
         properties:
-            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory

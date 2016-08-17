@@ -1,19 +1,32 @@
 package br.com.tribosapp.web.rest;
 
-import br.com.tribosapp.TribosApp;
-import br.com.tribosapp.domain.Event;
-import br.com.tribosapp.repository.EventRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.hamcrest.Matchers.hasItem;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -21,17 +34,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.math.BigDecimal;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import br.com.tribosapp.TribosApp;
+import br.com.tribosapp.domain.Event;
+import br.com.tribosapp.repository.EventRepository;
 
 /**
  * Test class for the EventResource REST controller.
@@ -43,7 +48,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @IntegrationTest
 public class EventResourceIntTest {
-
 
     private static final Long DEFAULT_EVENT_ID = 1L;
     private static final Long UPDATED_EVENT_ID = 2L;
@@ -88,8 +92,8 @@ public class EventResourceIntTest {
         EventResource eventResource = new EventResource();
         ReflectionTestUtils.setField(eventResource, "eventRepository", eventRepository);
         this.restEventMockMvc = MockMvcBuilders.standaloneSetup(eventResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setMessageConverters(jacksonMessageConverter).build();
+                .setCustomArgumentResolvers(pageableArgumentResolver).setMessageConverters(jacksonMessageConverter)
+                .build();
     }
 
     @Before
@@ -113,10 +117,8 @@ public class EventResourceIntTest {
 
         // Create the Event
 
-        restEventMockMvc.perform(post("/api/events")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(event)))
-                .andExpect(status().isCreated());
+        restEventMockMvc.perform(post("/api/events").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(event))).andExpect(status().isCreated());
 
         // Validate the Event in the database
         List<Event> events = eventRepository.findAll();
@@ -141,8 +143,7 @@ public class EventResourceIntTest {
         eventRepository.saveAndFlush(event);
 
         // Get all the events
-        restEventMockMvc.perform(get("/api/events?sort=id,desc"))
-                .andExpect(status().isOk())
+        restEventMockMvc.perform(get("/api/events?sort=id,desc")).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(event.getId().intValue())))
                 .andExpect(jsonPath("$.[*].eventId").value(hasItem(DEFAULT_EVENT_ID.intValue())))
@@ -164,28 +165,26 @@ public class EventResourceIntTest {
         eventRepository.saveAndFlush(event);
 
         // Get the event
-        restEventMockMvc.perform(get("/api/events/{id}", event.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.id").value(event.getId().intValue()))
-            .andExpect(jsonPath("$.eventId").value(DEFAULT_EVENT_ID.intValue()))
-            .andExpect(jsonPath("$.eventName").value(DEFAULT_EVENT_NAME.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.period").value(DEFAULT_PERIOD.toString()))
-            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
-            .andExpect(jsonPath("$.tags").value(DEFAULT_TAGS.toString()))
-            .andExpect(jsonPath("$.link").value(DEFAULT_LINK.toString()))
-            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.intValue()))
-            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.intValue()))
-            .andExpect(jsonPath("$.picture").value(DEFAULT_PICTURE.toString()));
+        restEventMockMvc.perform(get("/api/events/{id}", event.getId())).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(event.getId().intValue()))
+                .andExpect(jsonPath("$.eventId").value(DEFAULT_EVENT_ID.intValue()))
+                .andExpect(jsonPath("$.eventName").value(DEFAULT_EVENT_NAME.toString()))
+                .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+                .andExpect(jsonPath("$.period").value(DEFAULT_PERIOD.toString()))
+                .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
+                .andExpect(jsonPath("$.tags").value(DEFAULT_TAGS.toString()))
+                .andExpect(jsonPath("$.link").value(DEFAULT_LINK.toString()))
+                .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.intValue()))
+                .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE.intValue()))
+                .andExpect(jsonPath("$.picture").value(DEFAULT_PICTURE.toString()));
     }
 
     @Test
     @Transactional
     public void getNonExistingEvent() throws Exception {
         // Get the event
-        restEventMockMvc.perform(get("/api/events/{id}", Long.MAX_VALUE))
-                .andExpect(status().isNotFound());
+        restEventMockMvc.perform(get("/api/events/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -208,10 +207,8 @@ public class EventResourceIntTest {
         updatedEvent.setLatitude(UPDATED_LATITUDE);
         updatedEvent.setLongitude(UPDATED_LONGITUDE);
 
-        restEventMockMvc.perform(put("/api/events")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(updatedEvent)))
-                .andExpect(status().isOk());
+        restEventMockMvc.perform(put("/api/events").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(updatedEvent))).andExpect(status().isOk());
 
         // Validate the Event in the database
         List<Event> events = eventRepository.findAll();
@@ -237,8 +234,7 @@ public class EventResourceIntTest {
         int databaseSizeBeforeDelete = eventRepository.findAll().size();
 
         // Get the event
-        restEventMockMvc.perform(delete("/api/events/{id}", event.getId())
-                .accept(TestUtil.APPLICATION_JSON_UTF8))
+        restEventMockMvc.perform(delete("/api/events/{id}", event.getId()).accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
         // Validate the database is empty

@@ -21,7 +21,7 @@
         vm.tribes = Tribe.query();
 
         $timeout(function() {
-            angular.element('.form-group:eq(1)>input').focus();
+            angular.element('.form-group:eq(0)>input').focus();
         });
 
         function clear() {
@@ -29,26 +29,28 @@
         }
 
         function save() {
-            vm.isSaving = true;
+            //vm.isSaving = true;
+            console.log(angular.toJson(vm.event));
 
             var file = vm.event.picture;
-            var picture = {
-                pictureTitle: vm.event.title,
-                description : vm.event.description,
-                type: 'EVENT',
-            }
+            var data = {
+                    pictureTitle: vm.event.eventName,
+                    description: vm.event.description,
+                    type: 'EVENT',
+                    file: file,
+                };
+
+            console.log(data);
             
             file.upload = Upload.upload({
-                url: '/api/upload',
-                data: {
-                    file: file,
-                    picture: picture
-                },
+                url: '/api/pictures/upload',
+                data: data
             });
 
             file.upload.then(function(response) {
                 
-                console.log(response);
+                vm.event.picture = response.data;
+                console.log(response.data.id);
 
                 //Send the event data using the picture uploaded.
                 if (vm.event.id !== null) {

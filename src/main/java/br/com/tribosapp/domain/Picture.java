@@ -150,7 +150,6 @@ public class Picture implements Serializable {
         StringBuilder filename = new StringBuilder();
         String separator = "_";
 
-        filename.append(FOLDER);
         filename.append(System.currentTimeMillis());
         filename.append(separator);
         filename.append(UUID.randomUUID());

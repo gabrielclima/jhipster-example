@@ -1,31 +1,34 @@
 package br.com.tribosapp.web.rest;
 
-import br.com.tribosapp.domain.Picture;
-import br.com.tribosapp.security.SecurityUtils;
-import com.codahale.metrics.annotation.Timed;
-import br.com.tribosapp.domain.Event;
-import br.com.tribosapp.repository.EventRepository;
-import br.com.tribosapp.web.rest.util.HeaderUtil;
-import org.apache.catalina.security.SecurityUtil;
-import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.MessageDigest;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
+import javax.inject.Inject;
+
+import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.codahale.metrics.annotation.Timed;
+
+import br.com.tribosapp.domain.Event;
+import br.com.tribosapp.domain.Picture;
+import br.com.tribosapp.repository.EventRepository;
+import br.com.tribosapp.web.rest.util.HeaderUtil;
 
 /**
  * REST controller for managing Event.
