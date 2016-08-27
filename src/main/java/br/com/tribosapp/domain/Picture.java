@@ -1,7 +1,10 @@
 package br.com.tribosapp.domain;
 
+import br.com.tribosapp.config.Constants;
 import br.com.tribosapp.security.SecurityUtils;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.io.FilenameUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -54,6 +57,11 @@ public class Picture implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<People> authors = new HashSet<>();
+
+    @JsonProperty("url")
+    public String getUrl() {
+        return Constants.AWS_CLOUDFRONT_URL + Constants.AWS_FOLDER_IMG + getType().toString().toLowerCase() + "/" + getFile();
+    }
 
     public Long getId() {
         return id;
@@ -142,8 +150,8 @@ public class Picture implements Serializable {
     @Override
     public String toString() {
         return "Picture{" + "id=" + id + ", pictureTitle='" + pictureTitle + "'" + ", description='" + description + "'"
-                + ", file='" + file + "'" + ", type='" + type + "'" + ", createdAt='" + createdAt + "'"
-                + ", updatedAt='" + updatedAt + "'" + '}';
+            + ", file='" + file + "'" + ", type='" + type + "'" + ", createdAt='" + createdAt + "'"
+            + ", updatedAt='" + updatedAt + "'" + '}';
     }
 
     public static String generateFilename(String originalFilename) {
@@ -158,4 +166,6 @@ public class Picture implements Serializable {
 
         return filename.toString();
     }
+
+
 }

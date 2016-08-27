@@ -21,6 +21,13 @@ public final class Constants {
 
     public static final String SYSTEM_ACCOUNT = "system";
 
+    //AWS S3 Bucket responsible to store application content
+    public static final String AWS_S3_BUCKET = "tribosapp";
+    //AWS Cloudfront URL that serves S3 content
+    public static final String AWS_CLOUDFRONT_URL = "//d221qy4kexvi99.cloudfront.net/";
+    //Picture Folders
+    public static final String AWS_FOLDER_IMG = "img/";
+
     private Constants() {
     }
 }
