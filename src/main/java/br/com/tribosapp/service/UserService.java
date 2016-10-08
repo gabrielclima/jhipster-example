@@ -102,6 +102,10 @@ public class UserService {
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
+        // activates user without email confirmation
+        newUser.setActivated(true);
+        newUser.setActivationKey(null);
+
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
