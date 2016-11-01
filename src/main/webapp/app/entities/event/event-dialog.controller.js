@@ -40,39 +40,47 @@
                     file: file,
                 };
 
-            console.log(data);
             
-            file.upload = Upload.upload({
-                url: '/api/pictures/upload',
-                data: data
-            });
+            if(file != null) {
+                file.upload = Upload.upload({
+                    url: '/api/pictures/upload',
+                    data: data
+                });
 
-            file.upload.then(function(response) {
-                
-                vm.event.picture = response.data;
-                console.log(response.data.id);
+                file.upload.then(function(response) {
+                    
+                    vm.event.picture = response.data;
+                    console.log(response.data.id);
 
+                    //Send the event data using the picture uploaded.
+                    if (vm.event.id !== null) {
+                        Event.update(vm.event, onSaveSuccess, onSaveError);
+                    } else {
+                        Event.save(vm.event, onSaveSuccess, onSaveError);
+                    }
+                    $timeout(function() {
+                        file.result = response.data;
+                    });
+
+                }, function(response) {
+
+                    console.log(response);
+
+                    if (response.status > 0)
+                        $scope.errorMsg = response.status + ': ' + response.data;
+
+                }, function(evt) {
+                    // Math.min is to fix IE which reports 200% sometimes
+                    file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                });
+            } else {
                 //Send the event data using the picture uploaded.
                 if (vm.event.id !== null) {
                     Event.update(vm.event, onSaveSuccess, onSaveError);
                 } else {
                     Event.save(vm.event, onSaveSuccess, onSaveError);
                 }
-                $timeout(function() {
-                    file.result = response.data;
-                });
-
-            }, function(response) {
-
-                console.log(response);
-
-                if (response.status > 0)
-                    $scope.errorMsg = response.status + ': ' + response.data;
-
-            }, function(evt) {
-                // Math.min is to fix IE which reports 200% sometimes
-                file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            });
+            }
         }
 
         function onSaveSuccess(result) {

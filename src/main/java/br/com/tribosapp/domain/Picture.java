@@ -1,8 +1,7 @@
 package br.com.tribosapp.domain;
 
 import br.com.tribosapp.config.Constants;
-import br.com.tribosapp.security.SecurityUtils;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import br.com.tribosapp.domain.enumeration.PictureType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.io.FilenameUtils;
@@ -13,11 +12,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
-
-import br.com.tribosapp.domain.enumeration.PictureType;
 
 /**
  * A Picture.
